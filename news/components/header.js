@@ -1,6 +1,6 @@
 export default function Header() {
   return (
-    <div className="flex justify-between items-center mb-20">
+    <div className="flex justify-between items-center mb-10">
       <div className="flex space-x-4">
         <div
           className="flex justify-center text-5xl font-semibold text-white rounded-2xl py-0.5 pxt-3"

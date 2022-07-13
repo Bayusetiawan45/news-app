@@ -39,14 +39,14 @@ export default function Footer() {
           </li>
         </div>
       </div>
-      <div class="flex-grow border-t border-gray-300 mb-10"></div>
+      <div className="flex-grow border-t border-gray-300 mb-10"></div>
       <div className="flex justify-between ">
-        <span class="text-sm text-gray-500 dark:text-gray-300 sm:text-center">
+        <span className="text-sm text-gray-500 dark:text-gray-300 sm:text-center">
           © 2022 <a href="https://flowbite.com/">Sislog</a>. All Rights
           Reserved.
         </span>
         <div className="flex">
-          <a href="#" class="text-gray-400 hover:text-gray-900 mr-4">
+          <a href="#" className="text-gray-400 hover:text-gray-900 mr-4">
             <svg
               width="24"
               height="24"
@@ -60,7 +60,7 @@ export default function Footer() {
               />
             </svg>
           </a>
-          <a href="#" class="text-gray-400 hover:text-gray-900 mr-4">
+          <a href="#" className="text-gray-400 hover:text-gray-900 mr-4">
             <svg
               width="24"
               height="24"
@@ -74,7 +74,7 @@ export default function Footer() {
               />
             </svg>
           </a>
-          <a href="#" class="text-gray-400 hover:text-gray-900 mr-4">
+          <a href="#" className="text-gray-400 hover:text-gray-900 mr-4">
             <svg
               width="24"
               height="24"

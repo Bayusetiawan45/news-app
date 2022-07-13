@@ -27,7 +27,7 @@ function NewsDetails(props) {
     try {
       setIsLoading(true);
       const results = await axios.get(
-        `https://newsapi.org/v2/top-headlines?country=us&apiKey=ae673c29c4d34eb797d82e311fb53171&q=${state.title}`
+        `https://newsapi.org/v2/top-headlines?country=us&apiKey=88aba45df35643d4b38f60d8e6c8fb2c&q=${state.title}`
       );
       if (results.data.status === "ok") {
         setDataDetails(results.data.articles[0]);
@@ -46,7 +46,7 @@ function NewsDetails(props) {
     try {
       setIsLoading(true);
       const results = await axios.get(
-        `https://newsapi.org/v2/top-headlines?pageSize=2&country=us&apiKey=ae673c29c4d34eb797d82e311fb53171`
+        `https://newsapi.org/v2/top-headlines?pageSize=2&country=us&apiKey=88aba45df35643d4b38f60d8e6c8fb2c`
       );
       if (results.data.status === "ok") {
         setArticles(results.data.articles);

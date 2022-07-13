@@ -10,6 +10,7 @@ import useDebounce from "../hooks/useDebounce";
 
 export default function Home() {
   const [search, setSearch] = useState('')
+  const [page, setPage] = useState(1)
   const debouncedValue = useDebounce(search, 500);
   const [articles, setArticles] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -21,7 +22,6 @@ export default function Home() {
   };
 
   const handleSearch = (e) => {
-    console.log(e.target.value)
     setSearch(e.target.value)
   };
 
@@ -29,7 +29,7 @@ export default function Home() {
     try {
       setIsLoading(true);
       const results = await axios.get(
-        `https://newsapi.org/v2/top-headlines?country=us&apiKey=88aba45df35643d4b38f60d8e6c8fb2c`
+        `https://newsapi.org/v2/top-headlines?country=us&page=${page}&apiKey=88aba45df35643d4b38f60d8e6c8fb2c`
       );
       if (results.data.status === "ok") {
         setArticles(results.data.articles);
@@ -47,9 +47,8 @@ export default function Home() {
     try {
       setIsLoading(true);
       const results = await axios.get(
-        `https://newsapi.org/v2/everything?q=${title}&apiKey=88aba45df35643d4b38f60d8e6c8fb2c`
+        `https://newsapi.org/v2/everything?q=${title}&page=${page}&apiKey=88aba45df35643d4b38f60d8e6c8fb2c`
       );
-      console.log("RESULT", results)
       if (results.data.status === "ok") {
         setArticles(results.data.articles);
       } else {
@@ -63,14 +62,13 @@ export default function Home() {
   };
 
   useEffect(() => {
-    console.log("a", debouncedValue)
     try {
       if (debouncedValue) getSearchData(debouncedValue);
       else getData();
     } catch (error) {
       console.log(error.message);
     }
-  }, [debouncedValue]);
+  }, [debouncedValue, page]);
 
   return (
     <div className="container mx-auto my-4">
@@ -87,7 +85,7 @@ export default function Home() {
               );
             })}
       </div>
-      <Pagination />
+      <Pagination page={page} setPage={setPage}/>
       <Footer />
     </div>
   );

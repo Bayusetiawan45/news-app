@@ -1,6 +1,6 @@
 export default function Title() {
   return (
-    <div className="flex justify-between mb-20">
+    <div className="flex justify-between my-20">
       <div className="flex space-x-4">
         <span
           className="text-5xl font-medium tracking-wider"
@@ -9,11 +9,11 @@ export default function Title() {
           Article
         </span>
       </div>
-      <form class="flex items-center">
-        <div class="relative w-full">
-          <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+      <form className="flex items-center">
+        <div className="relative w-full">
+          <div className="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
             <svg
-              class="w-5 h-5 text-gray-500 dark:text-gray-400"
+              className="w-5 h-5 text-gray-500 dark:text-gray-400"
               fill="currentColor"
               viewBox="0 0 20 20"
               xmlns="http://www.w3.org/2000/svg"
@@ -28,7 +28,7 @@ export default function Title() {
           <input
             type="text"
             id="simple-search"
-            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             placeholder="Cari"
             required
           />

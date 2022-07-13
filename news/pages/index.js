@@ -6,8 +6,12 @@ import Title from "../components/title";
 import Router from "next/router";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import useDebounce from "../hooks/useDebounce";
 
 export default function Home() {
+  const [search, setSearch] = useState('')
+  const [page, setPage] = useState(1)
+  const debouncedValue = useDebounce(search, 500);
   const [articles, setArticles] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const handleRouting = (title) => {
@@ -17,11 +21,33 @@ export default function Home() {
     });
   };
 
+  const handleSearch = (e) => {
+    setSearch(e.target.value)
+  };
+
   const getData = async () => {
     try {
       setIsLoading(true);
       const results = await axios.get(
-        `https://newsapi.org/v2/top-headlines?country=us&apiKey=fc2abc530bad4e0bbb35ff8c19b1e561`
+        `https://newsapi.org/v2/top-headlines?country=us&page=${page}&apiKey=88aba45df35643d4b38f60d8e6c8fb2c`
+      );
+      if (results.data.status === "ok") {
+        setArticles(results.data.articles);
+      } else {
+        throw new Error("error");
+      }
+      setIsLoading(false);
+    } catch (error) {
+      console.log(error.message);
+      setIsLoading(false);
+    }
+  };
+
+  const getSearchData = async (title) => {
+    try {
+      setIsLoading(true);
+      const results = await axios.get(
+        `https://newsapi.org/v2/everything?q=${title}&page=${page}&apiKey=88aba45df35643d4b38f60d8e6c8fb2c`
       );
       if (results.data.status === "ok") {
         setArticles(results.data.articles);
@@ -36,13 +62,18 @@ export default function Home() {
   };
 
   useEffect(() => {
-    getData();
-  }, []);
+    try {
+      if (debouncedValue) getSearchData(debouncedValue);
+      else getData();
+    } catch (error) {
+      console.log(error.message);
+    }
+  }, [debouncedValue, page]);
 
   return (
     <div className="container mx-auto my-4">
       <Header />
-      <Title />
+      <Title handleSearch={handleSearch}/>
       <div class="grid sm:grid-cols-1 lg:grid-cols-2 gap-6 mb-20 ">
         {isLoading
           ? console.log("loading...")
@@ -54,7 +85,7 @@ export default function Home() {
               );
             })}
       </div>
-      <Pagination />
+      <Pagination page={page} setPage={setPage}/>
       <Footer />
     </div>
   );
